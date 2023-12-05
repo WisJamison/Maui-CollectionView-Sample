@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="CollectionViewChildEvents.MainPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <VerticalStackLayout Padding="30,0"
+                         Spacing="25"
+                         VerticalOptions="Center">
+        <CollectionView Margin="2"
+                        CanReorderItems="True"
+                        ChildAdded="OnChildAdded"
+                        ChildRemoved="OnChildRemoved"
+                        HeightRequest="200"
+                        HorizontalOptions="Center"
+                        ItemsSource="{Binding ImageList}"
+                        SelectionMode="None"
+                        SizeChanged="OnCollectionViewSizedChanged"
+                        VerticalOptions="FillAndExpand">
+            <!--  Item Layout  -->
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="2" Orientation="Horizontal" />
+            </CollectionView.ItemsLayout>
+            <!--  Item Template  -->
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label BackgroundColor="LightBlue"
+                           FontSize="16"
+                           HeightRequest="20"
+                           HorizontalTextAlignment="Center"
+                           Text="{Binding Key.ImageName}"
+                           TextColor="Black"
+                           VerticalOptions="Center"
+                           VerticalTextAlignment="Center"
+                           WidthRequest="100" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Command="{Binding AddNewItemCommand}" Text="New" />
+        <Button Command="{Binding RemoveItemCommand}" Text="Delete" />
+    </VerticalStackLayout>
+
+</ContentPage>
